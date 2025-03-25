@@ -191,15 +191,16 @@
     <div class="columns is-centered has-text-centered">
 
     <!--/ ##################### Cabin ##################### -->
-    <h2 class="title is-3">Motivation</h2>
     </div>
 
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Motivation</h2>
-        <img src="./static/images/motivation.pdf"
-                 type="image/pdf" height="100%">
-        <p><b>Similarity of class distributions between patches. </b>From the noisy prediction of MaskCLIP, we explore the similarity of class distributions between patches. \(S_{Pi}\) represents the class distribution at the position of patch \($Pi$\) within the similarity map \(S\) Although the segmented classes differ, the similarity of the class distribution of patches between true positive (\($P1$\)) and false negative (\($P2$\)) is more similar than between true positive (\($P1$\)) and false positive (\($P3$\)). The distance of class distribution is measured by JS divergence, \($D_{JS}(p||q)$\).
+        <img src="./static/images/motivation.png"
+                 type="image/png" height="100%">
+        <p><b>Similarity of class distributions between patches. </b> We argue that CLIP-based prior works yield patch-wise <b>noisy class predictions</b> while having <b>highly correlated class distributions</b> for each object. The similarity of the class distribution patches between <b>P1</b> and <b>P2</b> is more similar than between <b>P1</b> and <b>P3</b>.
+
+
       </div>
     </div>
 
@@ -219,10 +220,10 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
-        <img src="./static/images/method.pdf"
-                 type="image/pdf" height="100%">
+        <img src="./static/images/method.png"
+                 type="image/png" height="100%">
         <p>
-          <b>The overall pipeline of our proposed CDAM.</b> During inference, the class distribution-induced attention map (<span class="dnerf">CDAM</span>) is constructed by measuring the distance between the class distributions of each patch in the initial similarity map \($S$\). The <span class="dnerf">CDAM</span> is then integrated with the last attention layer of CLIP, highlighting the class-specific regions in the input image. <span class="dnerf">CDAM</span> with multi-scale image patches and augmented text prompts can further enhance the quality of attention map. Next, we dynamically adjust the threshold value for foreground-background regions based on the entropy.
+          <b>The overall pipeline of our proposed CDAM.</b> During inference, the class distribution-induced attention map (<span class="dnerf">CDAM</span>) is constructed by measuring the distance between the class distributions of each patch in the initial similarity map \(S\). The <span class="dnerf">CDAM</span> is then integrated with the last attention layer of CLIP, highlighting the class-specific regions in the input image. <span class="dnerf">CDAM</span> with multi-scale image patches and augmented text prompts can further enhance the quality of attention map. Next, we dynamically adjust the threshold value for foreground-background regions based on the entropy.
         </p>
       </div>
     </div>
@@ -236,7 +237,7 @@
         <img src="./static/images/quant.png"
                  type="image/png" height="100%">
         <p>
-          <b>Comparison with state-of-the-art methods on benchmark datasets with background class.</b> We evaluate the open-vocabulary semantic segmentation methods on VOC21, Context60 and COCO-Obj. SD stands for Stable Diffusion and we marked \($^\dagger$\) for the reproduced methods by following the unified evaluation protocol and removing renaming tricks. For each dataset, we highlighted the best performance in bold and underlined the second-best performance. Performance improvements by <span class="dnerf">CDAM</span> are indicated in parentheses. The evaluation is based on mIoU (\(\%\)).
+          <b>Comparison with state-of-the-art methods on benchmark datasets with background class.</b> We evaluate the open-vocabulary semantic segmentation methods on VOC21, Context60 and COCO-Obj. SD stands for Stable Diffusion and we marked \(^\dagger\) for the reproduced methods by following the unified evaluation protocol and removing renaming tricks. For each dataset, we highlighted the best performance in bold and underlined the second-best performance. Performance improvements by <span class="dnerf">CDAM</span> are indicated in parentheses. The evaluation is based on mIoU (\(\%\)).
         </p>
       </div>
     </div>
@@ -248,7 +249,7 @@
         <img src="./static/images/results.png"
                  type="image/png" height="100%">
         <p>
-          <b>Qualitative segmentation results of <span class="dnerf">CDAM</span> from inaccurate initial predictions.</b> Our proposed <span class="dnerf">CDAM</span> demonstrated its ability to generate high-quality attention maps (\($\text{Attn}_\text{MS}$\)) even when starting from inaccurate predictions provided by prior methods. This capability led to significantly reduced noise in the final predictions of <span class="dnerf">CDAM</span>. Notably, our <span class="dnerf">CDAM</span> captures fine-grained details present within images, such as doors in a train and fence in front of sheep.
+          <b>Qualitative segmentation results of <span class="dnerf">CDAM</span> from inaccurate initial predictions.</b> Our proposed <span class="dnerf">CDAM</span> demonstrated its ability to generate high-quality attention maps (\(\text{Attn}_\text{MS}\)) even when starting from inaccurate predictions provided by prior methods. This capability led to significantly reduced noise in the final predictions of <span class="dnerf">CDAM</span>. Notably, our <span class="dnerf">CDAM</span> captures fine-grained details present within images, such as doors in a train and fence in front of sheep.
         </p>
       </div>
     </div>
