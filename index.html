@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="CDAM-CLIP: Class Distribution-induced Attention Map for Open-vocabulary Semantic Segmentations.">
+  <meta name="keywords" content="CLIP, Segmentation, training-free">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CDAM-CLIP: Class Distribution-induced Attention Map for Open-vocabulary Semantic Segmentations</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://janeyeon.github.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">CDAM-CLIP: Class Distribution-induced Attention Map for Open-vocabulary Semantic Segmentations</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/Dong1P">Dongun Kang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://janeyeon.github.io">Hayeon Kim</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://icl.snu.ac.kr/pi">Se Young Chun</a><sup>1, 2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Interdisciplinary Program in Artificial Intelligence,</span>
+            <span class="author-block"><sup>2</sup>Dept. of Electrical and Computer Engineering</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Seoul National University, Korea</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2408.01099"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2408.01099"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://youtu.be/02nH3wzzhis?si=LEwmEMwMShtjcDQU"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/janeyeon/CDAM-CLIP"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/google/nerfies/releases/tag/0.1"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/02nH3wzzhis?si=Cwhlx1dUX58w1j6O"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <img src="./static/images/colora_merged.gif"
+                 type="image/gif" height="100%">
+        <p>The Motivation of our proposed <span class="dnerf">CoLoRA</span> with <span class="dnerf">PROD</span>.</p>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+    <br>
+    <br>
+
+
+    <div class="columns is-centered has-text-centered">
+
+    <!--/ ##################### Cabin ##################### -->
+    <h2 class="title is-3">Motivation</h2>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <img src="./static/images/motivation.pdf"
+                 type="image/pdf" height="100%">
+        <p><b>Similarity of class distributions between patches. </b>From the noisy prediction of MaskCLIP, we explore the similarity of class distributions between patches. \(S_{Pi}\) represents the class distribution at the position of patch \($Pi$\) within the similarity map \(S\) Although the segmented classes differ, the similarity of the class distribution of patches between true positive (\($P1$\)) and false negative (\($P2$\)) is more similar than between true positive (\($P1$\)) and false positive (\($P3$\)). The distance of class distribution is measured by JS divergence, \($D_{JS}(p||q)$\).
+      </div>
+    </div>
+
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+
+          <p>Open-vocabulary semantic segmentation is a challenging task that assigns seen or unseen class labels to individual pixels. While recent works with vision-language models (VLMs) have shown promising results in zero-shot semantic segmentation, they still struggle to accurately localize class-related objects. In this work, we argue that CLIP-based prior works yield patch-wise <b>noisy class predictions</b> while having <b>highly correlated class distributions</b> for each object. Then, we propose Class Distribution-induced Attention Map, dubbed  <span class="dnerf">CDAM</span>, that is generated by the Jensen-Shannon divergence between class distributions of two patches that belong to the same (class) object. This CDAM can be used for open-vocabulary semantic segmentation by integrating it into the final layer of CLIP to enhance the capability to accurately localize desired classes. Our class distribution-induced attention scheme can easily work with multi-scale image patches as well as augmented text prompts for further enhancing attention maps. By exploiting class distribution, we also propose robust entropy-based background thresholding for the inference of semantic segmentation. Interestingly, the core idea of our proposed method does not conflict with other prior arts in zero-shot semantic segmentation, thus can be synergetically used together, yielding substantial improvements in performance across popular semantic segmentation benchmarks.
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <img src="./static/images/method.pdf"
+                 type="image/pdf" height="100%">
+        <p>
+          <b>The overall pipeline of our proposed CDAM.</b> During inference, the class distribution-induced attention map (<span class="dnerf">CDAM</span>) is constructed by measuring the distance between the class distributions of each patch in the initial similarity map \($S$\). The <span class="dnerf">CDAM</span> is then integrated with the last attention layer of CLIP, highlighting the class-specific regions in the input image. <span class="dnerf">CDAM</span> with multi-scale image patches and augmented text prompts can further enhance the quality of attention map. Next, we dynamically adjust the threshold value for foreground-background regions based on the entropy.
+        </p>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+
+
+     <!-- Paper video. -->
+     <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Result</h2>
+        <img src="./static/images/quant.png"
+                 type="image/png" height="100%">
+        <p>
+          <b>Comparison with state-of-the-art methods on benchmark datasets with background class.</b> We evaluate the open-vocabulary semantic segmentation methods on VOC21, Context60 and COCO-Obj. SD stands for Stable Diffusion and we marked \($^\dagger$\) for the reproduced methods by following the unified evaluation protocol and removing renaming tricks. For each dataset, we highlighted the best performance in bold and underlined the second-best performance. Performance improvements by <span class="dnerf">CDAM</span> are indicated in parentheses. The evaluation is based on mIoU (\(\%\)).
+        </p>
+      </div>
+    </div>
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Qualitative Result</h2>
+        <img src="./static/images/results.png"
+                 type="image/png" height="100%">
+        <p>
+          <b>Qualitative segmentation results of <span class="dnerf">CDAM</span> from inaccurate initial predictions.</b> Our proposed <span class="dnerf">CDAM</span> demonstrated its ability to generate high-quality attention maps (\($\text{Attn}_\text{MS}$\)) even when starting from inaccurate predictions provided by prior methods. This capability led to significantly reduced noise in the final predictions of <span class="dnerf">CDAM</span>. Notably, our <span class="dnerf">CDAM</span> captures fine-grained details present within images, such as doors in a train and fence in front of sheep.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- <section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{park2024colora,
+      title={Contribution-based Low-Rank Adaptation with Pre-training Model for Real Image Restoration},
+      author={Park, Donwon and Kim, Hayeon and Chun, Se Young},
+      journal= {ECCV},
+      year={2024}
+    }</code></pre>
+  </div>
+</section>
+ -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
