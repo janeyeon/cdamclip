@@ -1,6 +1,6 @@
-# CoLoRA
+# CDAM-CLIP
 
-This is the repository that contains source code for the [CoLoRA website](https://janeyeon.github.io/colora).
+This is the repository that contains source code for the [CDAM-CLIP website](https://janeyeon.github.io/cdamclip).
 
 
 
